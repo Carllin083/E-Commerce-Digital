@@ -1,0 +1,53 @@
+body {
+    background-color: #ffffff; /* Cor de fundo escura */
+    color: #ffffff; /* Cor de texto padrão branca */
+    font-family: Arial, sans-serif; /* Fonte genérica e segura */
+    margin: 0;
+    padding-top: 50px; /* Adiciona um padding para que o conteúdo não fique escondido atrás do header fixo */
+}
+/* deixa a barra de rolagem oculta*/
+body::-webkit-scrollbar {
+  width: 0;
+}
+
+/* --- Header fixo --- */
+header {
+    background-color: white;
+    padding: 10px 20px;
+    display: flex; /* Alinha os itens lado a lado */
+    justify-content: space-between; /* Espaço entre o título e os links */
+    align-items: center; /* Centraliza verticalmente */
+    position: fixed; /* Torna o header fixo na tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+    z-index: 1000; /* Garante que o header fique sobre outros elementos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: blueviolet;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px; /* Espaço entre os links */
+}
+
+.buttons a {
+    padding: 10px;
+    border-radius: 15px;
+    background-color: blueviolet;
+    color: white; /* Cor roxa para os links */
+    text-decoration: none; /* Remove o sublinhado */
+    font-weight: bold;
+    transition: color 0.3s ease; /* Transição suave para o efeito hover */
+}
+
+.buttons a:hover {
+    color: #5a008a; /* Cor mais clara no hover */
+    background-color: #ffffff;
+}

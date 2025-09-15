@@ -1,28 +1,29 @@
+/* Seu CSS original para o corpo e header */
+
 body {
-    background-color: #ffffff; /* Cor de fundo escura */
-    color: #ffffff; /* Cor de texto padrão branca */
-    font-family: Arial, sans-serif; /* Fonte genérica e segura */
+    background-color: #ffffff;
+    color: #000000;
+    font-family: Arial, sans-serif;
     margin: 0;
-    padding-top: 50px; /* Adiciona um padding para que o conteúdo não fique escondido atrás do header fixo */
+    padding-top: 50px;
 }
-/* deixa a barra de rolagem oculta*/
+
 body::-webkit-scrollbar {
   width: 0;
 }
 
-/* --- Header fixo --- */
 header {
     background-color: white;
     padding: 10px 20px;
-    display: flex; /* Alinha os itens lado a lado */
-    justify-content: space-between; /* Espaço entre o título e os links */
-    align-items: center; /* Centraliza verticalmente */
-    position: fixed; /* Torna o header fixo na tela */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
-    z-index: 1000; /* Garante que o header fique sobre outros elementos */
+    box-sizing: border-box;
+    z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
 }
 
@@ -34,20 +35,65 @@ header h1 {
 
 .buttons {
     display: flex;
-    gap: 20px; /* Espaço entre os links */
+    gap: 20px;
 }
 
 .buttons a {
     padding: 10px;
     border-radius: 15px;
     background-color: blueviolet;
-    color: white; /* Cor roxa para os links */
-    text-decoration: none; /* Remove o sublinhado */
+    color: white;
+    text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease; /* Transição suave para o efeito hover */
+    transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 .buttons a:hover {
-    color: #5a008a; /* Cor mais clara no hover */
+    color: #5a008a;
     background-color: #ffffff;
+}
+
+/* Estilo do main do produto */
+
+.produto-main {
+    padding: 120px 5% 40px;
+}
+
+.produto-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+}
+
+.produto-foto {
+    max-width: 400px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.produto-info {
+    max-width: 500px;
+}
+
+.produto-nome {
+    color: blueviolet;
+    margin-top: 0;
+}
+
+.btn-comprar {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: blueviolet;
+    color: white;
+    text-decoration: none;
+    border-radius: 15px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-comprar:hover {
+    background-color: #a237db;
 }

@@ -1,19 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/E-Commerce-Digital/AssetsCSS/produto.css">
-    <title>Nossos Produtos</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Produto - EletroHUB</title>
+    <link rel="stylesheet" href="./AssetsCSS/produto.css" />
 </head>
 <body>
     <header>
         <h1>EletroHUB</h1>
         <div class="buttons">
-            <a href="/E-Commerce-Digital/index.html" id="Home">Home</a>
-            <a href="" id="FeedBack">FeedBack</a>
-            <a href="" id="Redes">Redes</a>
+            <a href="produto.html" id="NossosProdutos">Nossos Produtos</a>
+            <a href="#" id="FeedBack">FeedBack</a>
+            <a href="#" id="Redes">Redes</a>
         </div>
-        </header>
+    </header>
+
+    <main class="produto-main">
+        <div class="produto-container">
+            <img id="produto-foto" src="" alt="Foto do Produto" class="produto-foto" />
+            <div class="produto-info">
+                <h2 id="produto-nome" class="produto-nome">Carregando...</h2>
+                <p><strong>Categoria:</strong> <span id="produto-categoria"></span></p>
+                <p><strong>Marca:</strong> <span id="produto-marca"></span></p>
+                <p><strong>Preço:</strong> R$ <span id="produto-preco"></span></p>
+                <p><strong>Disponibilidade:</strong> <span id="produto-estoque"></span></p>
+                <a href="#" id="btn-comprar" class="btn-comprar">Comprar Agora</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="./AssetsJS/products.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "nome": "Teclado Mecânico RGB",
+    "categoria": "Periféricos",
+    "preco": 349.90,
+    "marca": "Redragon",
+    "estoque": 25,
+    "foto": "https://www.kabum.com.br/_next/image?url=https%3A%2F%2Fimages2.kabum.com.br%2Fprodutos%2Ffotos%2F538692%2Fteclado-mecanico-gamer-husky-anchorage-full-size-branco-abnt2-rgb-switch-gateron-ef-red-htg200brvr_1744641257_gg.jpg&w=640&q=75"
+  },
+  {
+    "id": 2,
+    "nome": "Notebook Dell Inspiron 15",
+    "categoria": "Computadores",
+    "preco": 4299.00,
+    "marca": "Dell",
+    "estoque": 12,
+    "foto":"https://m.media-amazon.com/images/I/71epkJC5SxL._AC_SX522_.jpg"
+  },
+  {
+    "id": 3,
+    "nome": "Mouse Gamer Logitech G502",
+    "categoria": "Periféricos",
+    "preco": 299.00,
+    "marca": "Logitech",
+    "estoque": 40,
+    "foto": "https://m.media-amazon.com/images/I/718b9wK3eaL._AC_SY300_SX300_QL70_ML2_.jpg"
+  },
+  {
+    "id": 4,
+    "nome": "Monitor LG Ultrawide 29''",
+    "categoria": "Monitores",
+    "preco": 1299.00,
+    "marca": "LG",
+    "estoque": 15,
+    "foto": "https://www.lg.com/content/dam/channel/wcms/br/images/produtos/it/29wq500b-b/1-2010-29WQ500B-B.png/jcr:content/renditions/thum-1600x1062.jpeg"
+  },
+  {
+    "id": 5,
+    "nome": "Smartphone Samsung Galaxy S23",
+    "categoria": "Celulares",
+    "preco": 3899.00,
+    "marca": "Samsung",
+    "estoque": 30,
+    "foto":"https://a-static.mlcdn.com.br/800x560/smartphone-samsung-galaxy-s23-128gb-preto-5g-8gb-ram-61-cam-tripla-selfie-12mp/magazineluiza/232853700/e9fd12e9a66f2797bce34c5169369937.jpg"
+  },
+  {
+    "id": 6,
+    "nome": "SSD Kingston NV2 1TB NVMe",
+    "categoria": "Armazenamento",
+    "preco": 449.90,
+    "marca": "Kingston",
+    "estoque": 50,
+    "foto":"https://m.media-amazon.com/images/I/71NfMZKkpQL._AC_SX425_.jpg"
+  }
+]

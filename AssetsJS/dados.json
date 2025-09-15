@@ -5,8 +5,14 @@
     "categoria": "Periféricos",
     "preco": 349.90,
     "marca": "Redragon",
-    "estoque": 25,
-    "foto": "https://www.kabum.com.br/_next/image?url=https%3A%2F%2Fimages2.kabum.com.br%2Fprodutos%2Ffotos%2F538692%2Fteclado-mecanico-gamer-husky-anchorage-full-size-branco-abnt2-rgb-switch-gateron-ef-red-htg200brvr_1744641257_gg.jpg&w=640&q=75"
+    "foto": "https://www.kabum.com.br/_next/image?url=https%3A%2F%2Fimages2.kabum.com.br%2Fprodutos%2Ffotos%2F538692%2Fteclado-mecanico-gamer-husky-anchorage-full-size-branco-abnt2-rgb-switch-gateron-ef-red-htg200brvr_1744641257_gg.jpg&w=640&q=75",
+    "descricao": "Teclado mecânico RGB com switches Gateron EF-Red, proporcionando uma experiência de digitação silenciosa e precisa. Design completo (Full-size) com teclas de tamanho padrão, ideal para gamers e profissionais. Possui retroiluminação RGB personalizável, permitindo a escolha entre diversas cores e efeitos.",
+    "caracteristicas": [
+      "Layout ABNT2",
+      "Switch mecânico Gateron",
+      "Retroiluminação RGB",
+      "Conexão via cabo USB"
+    ]
   },
   {
     "id": 2,
@@ -14,8 +20,16 @@
     "categoria": "Computadores",
     "preco": 4299.00,
     "marca": "Dell",
-    "estoque": 12,
-    "foto":"https://m.media-amazon.com/images/I/71epkJC5SxL._AC_SX522_.jpg"
+    "foto": "https://m.media-amazon.com/images/I/71epkJC5SxL._AC_SX522_.jpg",
+    "descricao": "O Dell Inspiron 15 é um notebook potente, ideal para quem busca performance em tarefas diárias, estudos e até mesmo para trabalho profissional. Equipado com processador Intel Core i5, 8GB de RAM e 512GB de SSD, oferece rapidez e eficiência. Seu design moderno e fino também o torna perfeito para portabilidade.",
+    "caracteristicas": [
+      "Tela de 15.6\" Full HD",
+      "Processador Intel Core i5 11ª Geração",
+      "8GB de RAM",
+      "SSD de 512GB",
+      "Placa gráfica integrada Intel Iris Xe",
+      "Sistema operacional Windows 11"
+    ]
   },
   {
     "id": 3,
@@ -23,8 +37,15 @@
     "categoria": "Periféricos",
     "preco": 299.00,
     "marca": "Logitech",
-    "estoque": 40,
-    "foto": "https://m.media-amazon.com/images/I/718b9wK3eaL._AC_SY300_SX300_QL70_ML2_.jpg"
+    "foto": "https://m.media-amazon.com/images/I/718b9wK3eaL._AC_SY300_SX300_QL70_ML2_.jpg",
+    "descricao": "O Logitech G502 é um mouse gamer de alta performance com sensores de 25.600 DPI, proporcionando uma precisão extrema. Ele possui 11 botões programáveis, ideal para jogos que exigem uma rápida resposta. Seu design ergonômico e confortável garante longas horas de uso sem fadiga.",
+    "caracteristicas": [
+      "Sensor HERO de 25.600 DPI",
+      "11 botões programáveis",
+      "Iluminação RGB personalizável",
+      "Peso ajustável",
+      "Design ergonômico"
+    ]
   },
   {
     "id": 4,
@@ -32,8 +53,15 @@
     "categoria": "Monitores",
     "preco": 1299.00,
     "marca": "LG",
-    "estoque": 15,
-    "foto": "https://www.lg.com/content/dam/channel/wcms/br/images/produtos/it/29wq500b-b/1-2010-29WQ500B-B.png/jcr:content/renditions/thum-1600x1062.jpeg"
+    "foto": "https://www.lg.com/content/dam/channel/wcms/br/images/produtos/it/29wq500b-b/1-2010-29WQ500B-B.png/jcr:content/renditions/thum-1600x1062.jpeg",
+    "descricao": "O monitor LG Ultrawide de 29 polegadas oferece uma experiência imersiva e ampla, ideal para multitarefas, jogos ou trabalho criativo. Com resolução de 2560 x 1080, ele oferece cores vibrantes e uma tela sem bordas, garantindo visibilidade sem interrupções.",
+    "caracteristicas": [
+      "Resolução Full HD (2560 x 1080)",
+      "Tela Ultrawide de 29\"",
+      "Tecnologia de redução de cintilação",
+      "Conectividade HDMI",
+      "Suporte ajustável"
+    ]
   },
   {
     "id": 5,
@@ -41,8 +69,17 @@
     "categoria": "Celulares",
     "preco": 3899.00,
     "marca": "Samsung",
-    "estoque": 30,
-    "foto":"https://a-static.mlcdn.com.br/800x560/smartphone-samsung-galaxy-s23-128gb-preto-5g-8gb-ram-61-cam-tripla-selfie-12mp/magazineluiza/232853700/e9fd12e9a66f2797bce34c5169369937.jpg"
+    "foto": "https://a-static.mlcdn.com.br/800x560/smartphone-samsung-galaxy-s23-128gb-preto-5g-8gb-ram-61-cam-tripla-selfie-12mp/magazineluiza/232853700/e9fd12e9a66f2797bce34c5169369937.jpg",
+    "descricao": "O Samsung Galaxy S23 é um dos smartphones mais poderosos da linha Galaxy, com tela Dynamic AMOLED de 6,1 polegadas, processador Snapdragon 8 Gen 2 e câmeras de 50 MP. Ele é perfeito para quem busca um celular rápido, com excelente desempenho em jogos, fotografia e multitarefas.",
+    "caracteristicas": [
+      "Tela de 6,1\" Dynamic AMOLED 2X",
+      "Processador Snapdragon 8 Gen 2",
+      "8GB de RAM",
+      "128GB de armazenamento interno",
+      "Câmera principal de 50 MP",
+      "Câmera frontal de 12 MP",
+      "Conectividade 5G"
+    ]
   },
   {
     "id": 6,
@@ -50,7 +87,14 @@
     "categoria": "Armazenamento",
     "preco": 449.90,
     "marca": "Kingston",
-    "estoque": 50,
-    "foto":"https://m.media-amazon.com/images/I/71NfMZKkpQL._AC_SX425_.jpg"
+    "foto": "https://m.media-amazon.com/images/I/71NfMZKkpQL._AC_SX425_.jpg",
+    "descricao": "O Kingston NV2 é um SSD de alto desempenho, ideal para quem busca uma opção rápida e confiável para armazenar dados, melhorar o desempenho de jogos ou expandir o espaço de trabalho. Sua interface NVMe oferece velocidades de leitura e gravação muito superiores aos SSDs SATA tradicionais.",
+    "caracteristicas": [
+      "Capacidade de 1TB",
+      "Interface NVMe Gen 3.0 x4",
+      "Velocidades de leitura de até 3.500 MB/s",
+      "Tecnologia 3D NAND",
+      "Compatível com sistemas PCIe 3.0"
+    ]
   }
 ]

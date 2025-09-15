@@ -1,99 +1,182 @@
-/* Seu CSS original para o corpo e header */
+:root {
+  --bg-dark: #0a0a0a;
+  --bg-header: rgba(20, 0, 30, 0.85);
+  --accent-light: #bb86fc;
+  --accent-dark: #7b2cbf;
+  --text-light: #fff;
+  --text-muted: #bfbfbf;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-    background-color: #ffffff;
-    color: #000000;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding-top: 50px;
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  background: linear-gradient(180deg, var(--bg-dark), #1a001a);
+  color: var(--text-light);
+  padding-top: 80px;
 }
 
-body::-webkit-scrollbar {
-  width: 0;
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 24px;
+  background: var(--bg-header);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  z-index: 1000;
 }
 
-header {
-    background-color: white;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
+.logo {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--accent-light);
+  text-decoration: none;
+  letter-spacing: 1px;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: blueviolet;
+.search-form {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 999px;
 }
 
-.buttons {
-    display: flex;
-    gap: 20px;
+.search-form input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
 }
 
-.buttons a {
-    padding: 10px;
-    border-radius: 15px;
-    background-color: blueviolet;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease, background-color 0.3s ease;
+.search-form input::placeholder {
+  color: #ccc;
 }
 
-.buttons a:hover {
-    color: #5a008a;
-    background-color: #ffffff;
+.btn-search {
+  border: none;
+  background: none;
+  color: var(--accent-light);
+  cursor: pointer;
 }
 
-/* Estilo do main do produto */
+.cart-link {
+  color: var(--accent-light);
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.cart-link:hover {
+  transform: scale(1.1);
+}
 
 .produto-main {
-    padding: 120px 5% 40px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
 }
 
 .produto-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .produto-foto {
-    max-width: 400px;
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .produto-info {
-    max-width: 500px;
+  max-width: 500px;
+  color: #fff;
 }
 
 .produto-nome {
-    color: blueviolet;
-    margin-top: 0;
+  color: var(--accent-light);
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+.produto-info p {
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.produto-info h3 {
+  margin-top: 24px;
+  color: var(--accent-light);
+  font-size: 1.2rem;
+}
+
+.produto-info ul {
+  list-style: disc;
+  margin: 8px 0 16px 20px;
+  padding: 0;
+  color: #ddd;
+}
+
+.produto-info li {
+  margin-bottom: 4px;
 }
 
 .btn-comprar {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 24px;
-    background-color: blueviolet;
-    color: white;
-    text-decoration: none;
-    border-radius: 15px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent-light));
+  color: #fff;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
 .btn-comprar:hover {
-    background-color: #a237db;
+  background: linear-gradient(90deg, var(--accent-light), var(--accent-dark));
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .produto-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .produto-foto {
+    width: 80%;
+    height: auto;
+  }
+
+  .produto-info {
+    max-width: 90%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .produto-nome {
+    font-size: 1.5rem;
+  }
 }

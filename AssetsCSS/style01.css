@@ -1,102 +1,202 @@
-/* Estilos básicos para o corpo da página */
+:root {
+  --bg-dark: #0a0a0a;
+  --bg-header: rgba(20, 0, 30, 0.85);
+  --accent-light: #bb86fc;
+  --accent-dark: #7b2cbf;
+  --text-light: #fff;
+  --text-muted: #bfbfbf;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    background-color: #ffffff; /* Cor de fundo escura */
-    color: #ffffff; /* Cor de texto padrão branca */
-    font-family: Arial, sans-serif; /* Fonte genérica e segura */
-    margin: 0;
-    padding-top: 50px; /* Adiciona um padding para que o conteúdo não fique escondido atrás do header fixo */
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  background: linear-gradient(180deg, var(--bg-dark), #1a001a);
+  color: var(--text-light);
+  padding-top: 80px;
 }
 
-/* deixa a barra de rolagem oculta*/
-body::-webkit-scrollbar {
-  width: 0;
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 24px;
+  background: var(--bg-header);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  z-index: 1000;
 }
 
-/* --- Header fixo --- */
-header {
-    background-color: white;
-    padding: 10px 20px;
-    display: flex; /* Alinha os itens lado a lado */
-    justify-content: space-between; /* Espaço entre o título e os links */
-    align-items: center; /* Centraliza verticalmente */
-    position: fixed; /* Torna o header fixo na tela */
-    top: 0;
-    left: 0;
-    width: 100%;
-    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
-    z-index: 1000; /* Garante que o header fique sobre outros elementos */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
+.logo {
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--accent-light);
+  text-decoration: none;
+  letter-spacing: 1px;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: blueviolet;
+.search-form {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 999px;
 }
 
-.buttons {
-    display: flex;
-    gap: 20px; /* Espaço entre os links */
+.search-form input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: 1rem;
+  outline: none;
 }
 
-.buttons a {
-    padding: 10px;
-    border-radius: 15px;
-    background-color: blueviolet;
-    color: white; /* Cor roxa para os links */
-    text-decoration: none; /* Remove o sublinhado */
-    font-weight: bold;
-    transition: color 0.3s ease; /* Transição suave para o efeito hover */
+.search-form input::placeholder {
+  color: #ccc;
 }
 
-.buttons a:hover {
-    color: #5a008a; /* Cor mais clara no hover */
-    background-color: #ffffff;
+.btn-search {
+  border: none;
+  background: none;
+  color: var(--accent-light);
+  cursor: pointer;
 }
 
-/* --- Seção de informações e banner --- */
+.cart-link {
+  color: var(--accent-light);
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.cart-link:hover {
+  transform: scale(1.1);
+}
+
 .header-info {
-    padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px 20px;
+  text-align: center;
 }
 
-.header-info h1 {
-    margin-left: 4%;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: blueviolet;
+.header-info h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: var(--accent-light);
 }
 
 .header-info p {
-    margin-left: 4%;
-    font-size: 1rem;
-    max-width: 800px;
-    color: #000000;
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: var(--text-muted);
 }
 
-/* Estilização para o banner de promoção */
 .cartazPromo {
-    display: block;
-    width: 80%; /* Ajusta a largura para ser responsiva */
-    max-width: 1200px; /* Limita a largura máxima */
-    margin-left: 5%;
-    margin-top: 5%;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra sutil */
+  display: block;
+  width: 80%;
+  max-width: 1200px;
+  margin: 40px auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
-.Btn-compraHeader{
-    position: absolute;
-    top: 38%;
-    font-size: 20px;
-    margin-left: 4%;
-    text-decoration: none;
-    color: #ffffff;
-    background-color: blueviolet;
-    padding: 8px;
-    border-radius: 15px;
-    transition: color 0.3s ease;
+.cartazPromo img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.Btn-compraHeader:hover{
-    background-color: #a237db;
+.lista-produtos {
+  max-width: 1200px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.produto-card {
+  background: #ffffff;
+  color: #000;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.produto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.produto-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.produto-card h3 {
+  font-size: 1rem;
+  margin: 8px 0;
+  color: var(--accent-dark);
+}
+
+.produto-card .preco {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.produto-card .btn-ver {
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent-light));
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.produto-card .btn-ver:hover {
+  background: linear-gradient(90deg, var(--accent-light), var(--accent-dark));
+}
+
+@media (max-width: 768px) {
+  .search-form {
+    max-width: 100%;
+  }
+
+  .header-info h2 {
+    font-size: 2rem;
+  }
+
+  .produto-card img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .produto-card img {
+    height: 150px;
+  }
 }

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Finalizar compra na EletroHUB" />
+  <title>Checkout - EletroHUB</title>
+
+  <!-- Importa primeiro o estilo global -->
+  <link rel="stylesheet" href="./AssetsCSS/style01.css" />
+  
+  <!-- Depois o estilo específico do checkout -->
+  <link rel="stylesheet" href="./AssetsCSS/checkout.css" />
+
+  <script src="https://unpkg.com/lucide-icons@latest" defer></script>
+  <script src="./AssetsJS/checkout.js" defer></script>
+</head>
+
+<body>
+  <!-- Header fixo -->
+  <header class="site-header">
+    <a href="/" class="logo">EletroHUB</a>
+
+    <form class="search-form" role="search" aria-label="Buscar produtos">
+      <input type="search" name="q" placeholder="Buscar teclado, mouse, headset..." />
+      <button type="submit" class="btn-search" aria-label="Pesquisar">
+        <i data-lucide="search"></i>
+      </button>
+    </form>
+
+    <a href="carrinho.html" class="cart-link" aria-label="Ver carrinho">
+      <i data-lucide="shopping-cart"></i>
+    </a>
+  </header>
+
+  <main>
+    <!-- Título da Página -->
+    <section class="header-info">
+      <h2>Finalizar Compra</h2>
+      <p>Confira seus dados e finalize seu pedido com segurança.</p>
+    </section>
+
+    <!-- Seção de Checkout -->
+    <section class="checkout-container">
+      <form class="checkout-form" id="checkout-form">
+        <h3>Informações Pessoais</h3>
+        <label for="nome">Nome completo</label>
+        <input type="text" id="nome" placeholder="Seu nome" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="seuemail@exemplo.com" required />
+
+        <label for="telefone">Telefone</label>
+        <input type="tel" id="telefone" placeholder="(11) 99999-9999" required />
+
+        <h3>Endereço de Entrega</h3>
+
+        <label for="cep">CEP</label>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <input type="text" id="cep" placeholder="00000-000" maxlength="9" required />
+          <button type="button" id="btn-buscar-cep" class="btn-buscar-cep">Buscar CEP</button>
+        </div>
+        <div id="msg" aria-live="polite" style="margin-top: 4px;"></div>
+
+        <label for="logradouro">Endereço</label>
+        <input type="text" id="logradouro" placeholder="Rua, número e complemento" required />
+
+        <label for="bairro">Bairro</label>
+        <input type="text" id="bairro" placeholder="Bairro" required />
+
+        <label for="cidade">Cidade</label>
+        <input type="text" id="cidade" placeholder="Cidade" required />
+
+        <label for="estado">Estado</label>
+        <input type="text" id="estado" placeholder="UF" maxlength="2" required />
+
+        <div id="frete-container" style="margin-top: 8px; font-weight: 600; color: #90ee90;"></div>
+
+        <h3>Pagamento</h3>
+        <label for="cartao">Número do Cartão</label>
+        <input type="text" id="cartao" placeholder="**** **** **** ****" required />
+
+        <div class="form-row">
+          <div>
+            <label for="validade">Validade</label>
+            <input type="text" id="validade" placeholder="MM/AA" required />
+          </div>
+          <div>
+            <label for="cvc">CVC</label>
+            <input type="text" id="cvc" placeholder="***" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-finalizar">Finalizar Compra</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

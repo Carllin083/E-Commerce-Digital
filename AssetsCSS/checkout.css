@@ -1,0 +1,68 @@
+.checkout-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  color: var(--text-light);
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.checkout-form h3 {
+  color: var(--accent-light);
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--accent-dark);
+  padding-bottom: 4px;
+}
+
+.checkout-form label {
+  font-weight: 600;
+  margin-top: 8px;
+  color: var(--text-muted);
+}
+
+.checkout-form input {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1rem;
+}
+
+.checkout-form input::placeholder {
+  color: #ccc;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-row > div {
+  flex: 1;
+}
+
+.btn-finalizar {
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent-light));
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-finalizar:hover {
+  background: linear-gradient(90deg, var(--accent-light), var(--accent-dark));
+}

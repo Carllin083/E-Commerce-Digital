@@ -36,7 +36,7 @@
         <ul id="produto-caracteristicas"></ul>
 
         <!-- Botão atualizado -->
-        <a href="checkout.html" id="btn-comprar" class="btn-comprar">Comprar Agora</a>
+  <a href="#" id="btn-comprar" class="btn-comprar">Comprar Agora</a>
       </div>
     </div>
   </main>
@@ -44,6 +44,15 @@
   <script src="./AssetsJS/products.js" defer></script>
   <script>
     lucide.createIcons();
+    // Corrige o link do botão para passar o id do produto
+    document.addEventListener('DOMContentLoaded', function() {
+      const parametroUrl = new URLSearchParams(window.location.search);
+      const id = parametroUrl.get('id');
+      const btnComprar = document.getElementById('btn-comprar');
+      if (btnComprar && id) {
+        btnComprar.href = `checkout.html?id=${id}`;
+      }
+    });
   </script>
 </body>
 </html>

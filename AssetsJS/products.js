@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const parametroUrl = new URLSearchParams(window.location.search);
     const id = parametroUrl.get('id');
-
+    const btnComprar = document.getElementById('btn-comprar');
+    if (btnComprar && id) {
+        btnComprar.href = `checkout.html?id=${id}`;
+    }
     if (!id) return console.error('Parâmetro "id" não encontrado na URL.');
 
     const carregarProduto = async (id) => {

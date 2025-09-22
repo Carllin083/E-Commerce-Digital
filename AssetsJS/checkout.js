@@ -1,112 +1,122 @@
 document.addEventListener('DOMContentLoaded', function() {
-  var cepInput = document.getElementById('cep');
-  var btnBuscar = document.getElementById('btn-buscar-cep');
-  var msg = document.getElementById('msg');
-  var logradouro = document.getElementById('logradouro');
-  var bairro = document.getElementById('bairro');
-  var cidade = document.getElementById('cidade');
-  var estado = document.getElementById('estado');
-  var frete = document.getElementById('frete-container');
+  const $ = id => document.getElementById(id);
+  const cepInput = $('cep');
+  const btnBuscar = $('btn-buscar-cep');
+  const msg = $('msg');
+  const frete = $('frete-container');
+  const logradouro = $('logradouro');
+  const bairro = $('bairro');
+  const cidade = $('cidade');
+  const estado = $('estado');
+
+  const valorProdutoElem = document.createElement('div');
+  valorProdutoElem.id = 'valor-produto';
+  const somaTotalElem = document.createElement('div');
+  somaTotalElem.id = 'soma-total';
+  valorProdutoElem.style.display = 'none';
+  somaTotalElem.style.display = 'none';
+  frete.parentNode.insertBefore(valorProdutoElem, frete.nextSibling);
+  frete.parentNode.insertBefore(somaTotalElem, valorProdutoElem.nextSibling);
+
+  let valorProduto = null;
+  let produtoCarregado = false;
+  const idProduto = new URLSearchParams(window.location.search).get('id');
+  btnBuscar.disabled = true;
+  function carregarProduto(callback) {
+    if (!idProduto) {
+      btnBuscar.disabled = false;
+      produtoCarregado = true;
+      if (callback) callback();
+      return;
+    }
+    fetch('./AssetsJS/dados.json')
+      .then(res => res.json())
+      .then(dados => {
+        const produto = dados.find(item => item.id == idProduto);
+        if (produto) valorProduto = Number(produto.preco);
+        produtoCarregado = true;
+      })
+      .finally(() => {
+        btnBuscar.disabled = false;
+        if (callback) callback();
+      });
+  }
+  carregarProduto();
 
   function setMsg(text, isError) {
     msg.textContent = text;
-    if (isError === true) {
-      msg.style.color = '#f44336';
-    } else {
-      msg.style.color = '#4caf50';
-    }
+    msg.style.color = isError ? '#f44336' : '#4caf50';
   }
 
   function limparCampos() {
-    logradouro.value = '';
-    bairro.value = '';
-    cidade.value = '';
-    estado.value = '';
+    ['logradouro','bairro','cidade','estado'].forEach(id => $(id).value = '');
     frete.textContent = '';
+    valorProdutoElem.style.display = 'none';
+    somaTotalElem.style.display = 'none';
   }
 
-  function calcularFrete(regiao) {
-    if (regiao === 'Sudeste') {
-      return 20;
+  function calcularFrete(uf) {
+    const regioes = {
+      'Sudeste': ['SP','RJ','MG','ES'],
+      'Nordeste': ['BA','PE','CE','RN','PB','MA','PI','AL','SE'],
+      'Sul': ['RS','SC','PR'],
+      'Centro-Oeste': ['DF','GO','MT','MS'],
+      'Norte': ['AM','PA','RO','RR','AP','TO','AC']
+    };
+    let regiao = 'Outra Região';
+    for (const [nome,ufs] of Object.entries(regioes)) {
+      if (ufs.includes(uf)) regiao = nome;
     }
-    if (regiao === 'Nordeste') {
-      return 40;
-    }
-    if (regiao === 'Sul') {
-      return 35;
-    }
-    if (regiao === 'Centro-Oeste') {
-      return 30;
-    }
-    if (regiao === 'Norte') {
-      return 50;
-    }
-    return 45;
+    return {
+      'Sudeste': 20,
+      'Nordeste': 40,
+      'Sul': 35,
+      'Centro-Oeste': 30,
+      'Norte': 50
+    }[regiao] || 45;
   }
 
   function formatarCep(cep) {
     cep = cep.replace(/\D/g, '');
-    if (cep.length > 5) {
-      return cep.slice(0, 5) + '-' + cep.slice(5);
-    }
-    return cep;
+    return cep.length > 5 ? cep.slice(0, 5) + '-' + cep.slice(5) : cep;
   }
 
   async function buscarCep() {
-    var cep = cepInput.value.replace(/\D/g, '');
+    if (!produtoCarregado) {
+      setMsg('Aguarde o carregamento do produto...', true);
+      carregarProduto(() => buscarCep());
+      return;
+    }
+    const cep = cepInput.value.replace(/\D/g, '');
     if (cep.length !== 8) {
       setMsg('CEP inválido. Deve conter 8 dígitos.', true);
       limparCampos();
       return;
     }
-
     btnBuscar.disabled = true;
     btnBuscar.textContent = 'Buscando...';
     setMsg('');
-
     try {
-      var response = await fetch('https://viacep.com.br/ws/' + cep + '/json/');
-      if (!response.ok) {
-        throw new Error('Erro na requisição');
-      }
-
-      var data = await response.json();
-
+      const response = await fetch('https://viacep.com.br/ws/' + cep + '/json/');
+      if (!response.ok) throw new Error('Erro na requisição');
+      const data = await response.json();
       if (data.erro) {
         setMsg('CEP não encontrado.', true);
         limparCampos();
-      } else {
-        if (data.logradouro) {
-          logradouro.value = data.logradouro;
-        } else {
-          logradouro.value = '';
-        }
-
-        if (data.bairro) {
-          bairro.value = data.bairro;
-        } else {
-          bairro.value = '';
-        }
-
-        if (data.localidade) {
-          cidade.value = data.localidade;
-        } else {
-          cidade.value = '';
-        }
-
-        if (data.uf) {
-          estado.value = data.uf;
-        } else {
-          estado.value = '';
-        }
-
-        var regiao = data.regiao;
-        if (!regiao) {
-          regiao = 'Outra Região';
-        }
-
-        setMsg('Endereço encontrado.');
-        frete.textContent = 'Frete: R$ ' + calcularFrete(regiao).toFixed(2);
+        return;
+      }
+      logradouro.value = data.logradouro || '';
+      bairro.value = data.bairro || '';
+      cidade.value = data.localidade || '';
+      estado.value = data.uf || '';
+      setMsg('Endereço encontrado.');
+      const valorFrete = calcularFrete(data.uf);
+      frete.textContent = 'Frete: R$ ' + valorFrete.toFixed(2);
+      if (typeof valorProduto === 'number' && !isNaN(valorProduto)) {
+        valorProdutoElem.textContent = 'Valor do produto: R$ ' + valorProduto.toFixed(2);
+        somaTotalElem.textContent = 'Total: R$ ' + (valorProduto + valorFrete).toFixed(2);
+        valorProdutoElem.style.display = 'block';
+        somaTotalElem.style.display = 'block';
       }
     } catch (error) {
       setMsg('Erro ao buscar CEP.', true);
@@ -118,15 +128,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   btnBuscar.addEventListener('click', buscarCep);
-
-  cepInput.addEventListener('input', function() {
+  cepInput.addEventListener('input', () => {
     cepInput.value = formatarCep(cepInput.value);
   });
-
-  cepInput.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      buscarCep();
-    }
+    cepInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        buscarCep();
+      }
+    });
   });
-});

@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
   const idProduto = new URLSearchParams(window.location.search).get('id');
-  // Exibe produto individual no checkout
   const produtoSection = document.getElementById('produto-checkout');
   const produtoFoto = document.getElementById('checkout-produto-foto');
   const produtoNome = document.getElementById('checkout-produto-nome');

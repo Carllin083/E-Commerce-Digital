@@ -29,24 +29,12 @@
         <h3>Características</h3>
         <ul id="produto-caracteristicas"></ul>
 
-        <!-- Botão atualizado -->
   <a href="#" id="btn-comprar" class="btn-comprar">Comprar Agora</a>
       </div>
     </div>
   </main>
 
   <script src="./AssetsJS/products.js" defer></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', function() {
-      if (window.lucide) lucide.createIcons();
-      // Corrige o link do botão para passar o id do produto
-      const parametroUrl = new URLSearchParams(window.location.search);
-      const id = parametroUrl.get('id');
-      const btnComprar = document.getElementById('btn-comprar');
-      if (btnComprar && id) {
-        btnComprar.href = `checkout.html?id=${id}`;
-      }
-    });
-  </script>
+  <script src="./AssetsJS/produto.js" defer></script>
 </body>
 </html>

@@ -1,12 +1,10 @@
-/* Produto visualização largura igual ao checkout-container */
-.produto-checkout-section {
+ .produto-checkout-section {
   max-width: 700px;
   margin: 32px auto 24px auto;
   padding: 0;
   background: none;
 }
-/* Visualização do produto no checkout */
-.produto-checkout-visual {
+ .produto-checkout-visual {
   display: flex;
   gap: 24px;
   align-items: center;

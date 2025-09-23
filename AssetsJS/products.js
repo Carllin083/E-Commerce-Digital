@@ -52,5 +52,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const id = parametroUrl.get('id');
     if (!id) return console.error('Parâmetro "id" não encontrado na URL.');
     carregarProduto(id);
-    // ...existing code...
 });

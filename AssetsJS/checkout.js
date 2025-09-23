@@ -1,4 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
+  const idProduto = new URLSearchParams(window.location.search).get('id');
+  // Exibe produto individual no checkout
+  const produtoSection = document.getElementById('produto-checkout');
+  const produtoFoto = document.getElementById('checkout-produto-foto');
+  const produtoNome = document.getElementById('checkout-produto-nome');
+  const produtoCategoria = document.getElementById('checkout-produto-categoria');
+  const produtoMarca = document.getElementById('checkout-produto-marca');
+  const produtoPreco = document.getElementById('checkout-produto-preco');
+  const produtoDescricao = document.getElementById('checkout-produto-descricao');
+
+  if (idProduto) {
+    fetch('./AssetsJS/dados.json')
+      .then(res => res.json())
+      .then(dados => {
+        const produto = dados.find(item => item.id == idProduto);
+        if (produto) {
+          produtoSection.style.display = 'block';
+          produtoFoto.src = produto.foto;
+          produtoNome.textContent = produto.nome;
+          produtoCategoria.textContent = produto.categoria;
+          produtoMarca.textContent = produto.marca;
+          produtoPreco.textContent = produto.preco.toFixed(2);
+          produtoDescricao.textContent = produto.descricao;
+        }
+      });
+  }
   const $ = id => document.getElementById(id);
   const cepInput = $('cep');
   const btnBuscar = $('btn-buscar-cep');
@@ -20,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   let valorProduto = null;
   let produtoCarregado = false;
-  const idProduto = new URLSearchParams(window.location.search).get('id');
   btnBuscar.disabled = true;
   function carregarProduto(callback) {
     if (!idProduto) {

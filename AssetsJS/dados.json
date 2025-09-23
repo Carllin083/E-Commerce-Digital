@@ -1,6 +1,7 @@
 [
   {
-    "id": 1,
+  "id": 1,
+  "estoque": 10,
     "nome": "Teclado Mecânico RGB",
     "categoria": "Periféricos",
     "preco": 349.90,
@@ -15,7 +16,8 @@
     ]
   },
   {
-    "id": 2,
+  "id": 2,
+  "estoque": 5,
     "nome": "Notebook Dell Inspiron 15",
     "categoria": "Computadores",
     "preco": 4299.00,
@@ -32,7 +34,8 @@
     ]
   },
   {
-    "id": 3,
+  "id": 3,
+  "estoque": 0,
     "nome": "Mouse Gamer Logitech G502",
     "categoria": "Periféricos",
     "preco": 299.00,
@@ -48,7 +51,8 @@
     ]
   },
   {
-    "id": 4,
+  "id": 4,
+  "estoque": 7,
     "nome": "Monitor LG Ultrawide 29''",
     "categoria": "Monitores",
     "preco": 1299.00,
@@ -64,7 +68,8 @@
     ]
   },
   {
-    "id": 5,
+  "id": 5,
+  "estoque": 3,
     "nome": "Smartphone Samsung Galaxy S23",
     "categoria": "Celulares",
     "preco": 3899.00,
@@ -82,7 +87,8 @@
     ]
   },
   {
-    "id": 6,
+  "id": 6,
+  "estoque": 12,
     "nome": "SSD Kingston NV2 1TB NVMe",
     "categoria": "Armazenamento",
     "preco": 449.90,

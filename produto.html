@@ -5,17 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Produto - EletroHUB</title>
   <link rel="stylesheet" href="./AssetsCSS/produto.css" />
-  <script src="https://unpkg.com/lucide-icons@latest"></script>
+  <script src="https://unpkg.com/lucide-icons@latest" defer></script>
 </head>
 <body>
   <header class="site-header">
     <a href="/" class="logo">EletroHUB</a>
-    <form class="search-form" role="search" aria-label="Buscar produtos">
-      <input type="search" name="q" placeholder="Buscar teclado, mouse, headset..." />
-      <button type="submit" class="btn-search" aria-label="Pesquisar">
-        <i data-lucide="search"></i>
-      </button>
-    </form>
     <a href="carrinho.html" class="cart-link" aria-label="Ver carrinho">
       <i data-lucide="shopping-cart"></i>
     </a>
@@ -43,9 +37,9 @@
 
   <script src="./AssetsJS/products.js" defer></script>
   <script>
-    lucide.createIcons();
-    // Corrige o link do botão para passar o id do produto
-    document.addEventListener('DOMContentLoaded', function() {
+    window.addEventListener('DOMContentLoaded', function() {
+      if (window.lucide) lucide.createIcons();
+      // Corrige o link do botão para passar o id do produto
       const parametroUrl = new URLSearchParams(window.location.search);
       const id = parametroUrl.get('id');
       const btnComprar = document.getElementById('btn-comprar');

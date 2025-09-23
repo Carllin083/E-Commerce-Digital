@@ -20,14 +20,6 @@
   <!-- Header fixo -->
   <header class="site-header">
     <a href="/" class="logo">EletroHUB</a>
-
-    <form class="search-form" role="search" aria-label="Buscar produtos">
-      <input type="search" name="q" placeholder="Buscar teclado, mouse, headset..." />
-      <button type="submit" class="btn-search" aria-label="Pesquisar">
-        <i data-lucide="search"></i>
-      </button>
-    </form>
-
     <a href="carrinho.html" class="cart-link" aria-label="Ver carrinho">
       <i data-lucide="shopping-cart"></i>
     </a>
@@ -38,6 +30,20 @@
     <section class="header-info">
       <h2>Finalizar Compra</h2>
       <p>Confira seus dados e finalize seu pedido com segurança.</p>
+    </section>
+
+    <!-- Produto Selecionado -->
+  <section id="produto-checkout" class="produto-checkout-section" style="display: none;">
+      <div class="produto-checkout-visual">
+        <img id="checkout-produto-foto" src="" alt="Foto do Produto" class="produto-checkout-foto" />
+        <div class="produto-checkout-info">
+          <h3 id="checkout-produto-nome">Produto</h3>
+          <p><span class="produto-checkout-label">Categoria:</span> <span id="checkout-produto-categoria"></span></p>
+          <p><span class="produto-checkout-label">Marca:</span> <span id="checkout-produto-marca"></span></p>
+          <p class="produto-checkout-preco">Preço: <span id="checkout-produto-preco"></span></p>
+        </div>
+      </div>
+      <p id="checkout-produto-descricao" class="produto-checkout-descricao"></p>
     </section>
 
     <!-- Seção de Checkout -->

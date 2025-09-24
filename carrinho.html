@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrinho - EletroHUB</title>
+  <link rel="stylesheet" href="./AssetsCSS/style01.css">
+  <link rel="stylesheet" href="./AssetsCSS/produto.css">
+  <script src="https://unpkg.com/lucide-icons@latest"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">EletroHUB</a>
+    <nav class="nav-actions">
+      <a class="cart-link" href="carrinho.html" aria-label="Carrinho">
+        <i data-lucide="shopping-cart"></i>
+        <span id="cart-count" class="cart-badge"></span>
+      </a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Seu carrinho</h1>
+    <section id="cart-list" class="cart-list"></section>
+    <div class="cart-summary">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cart-total">R$ 0,00</strong>
+      </div>
+      <div class="cart-actions">
+        <a href="index.html" class="btn-secondary">Continuar comprando</a>
+        <a id="btn-ir-checkout" class="btn-primary" href="checkout.html">Ir para o checkout</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="./AssetsJS/cart.js" defer></script>
+  <script src="./AssetsJS/carrinho.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){ if (window.lucide) lucide.createIcons(); });
+  </script>
+</body>
+</html>

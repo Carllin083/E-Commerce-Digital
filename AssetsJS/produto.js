@@ -8,3 +8,14 @@ window.addEventListener('DOMContentLoaded', function() {
     btnComprar.href = `checkout.html?id=${id}`;
   }
 });
+
+
+document.addEventListener('DOMContentLoaded', function(){
+  var id = new URLSearchParams(window.location.search).get('id');
+  var btn = document.getElementById('btn-add-carrinho');
+  if(btn && id){
+    btn.addEventListener('click', function(){
+      Cart.add(id, 1);
+    });
+  }
+});

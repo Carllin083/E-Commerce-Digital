@@ -6,12 +6,15 @@
   <title>Produto - EletroHUB</title>
   <link rel="stylesheet" href="./AssetsCSS/produto.css" />
   <script src="https://unpkg.com/lucide-icons@latest" defer></script>
+  <script src="./AssetsJS/cart.js" defer></script>
 </head>
 <body>
   <header class="site-header">
-    <a href="/" class="logo">EletroHUB</a>
+    <a href="index.html" class="logo">EletroHUB</a>
     <a href="carrinho.html" class="cart-link" aria-label="Ver carrinho">
       <i data-lucide="shopping-cart"></i>
+      <span id="cart-count" class="cart-badge"></span>
+      <span class="cart-label">Carrinho</span>
     </a>
   </header>
 
@@ -29,10 +32,15 @@
         <h3>Características</h3>
         <ul id="produto-caracteristicas"></ul>
 
-  <a href="#" id="btn-comprar" class="btn-comprar">Comprar Agora</a>
+  <a href="#" id="btn-comprar" class="btn-comprar" href="index.html#lista-produtos">Ver produtos na tela inicial</a>
       </div>
     </div>
+  
+    <section class="produto-actions container">
+      <button id="btn-add-carrinho" class="btn-primary btn-add">Adicionar ao carrinho</button>
+    </section>
   </main>
+
 
   <script src="./AssetsJS/products.js" defer></script>
   <script src="./AssetsJS/produto.js" defer></script>

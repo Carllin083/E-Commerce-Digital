@@ -1,20 +1,16 @@
 // Aguarda o carregamento completo da página antes de rodar o código
 document.addEventListener('DOMContentLoaded', function () {
 
-  // CAPTURA O ID DO PRODUTO NA URL
-  const idProduto = new URLSearchParams(window.location.search).get('id');
+  // CAPTURA UMA LISTA DE IDS DO PRODUTO NA URL
+  const idsProduto = new URLSearchParams(window.location.search).get('id');
+  // Se houver, transforma em array de ids
+  const listaIds = idsProduto ? idsProduto.split(',').map(id => id.trim()) : [];
 
   // ATALHO PARA getElementById
   const $ = id => document.getElementById(id);
 
-  // SELECIONA ELEMENTOS DE EXIBIÇÃO DO PRODUTO NA TELA
+  // SELECIONA O CONTAINER PRINCIPAL PARA EXIBIR PRODUTOS
   const produtoSection = $('produto-checkout');
-  const produtoFoto = $('checkout-produto-foto');
-  const produtoNome = $('checkout-produto-nome');
-  const produtoCategoria = $('checkout-produto-categoria');
-  const produtoMarca = $('checkout-produto-marca');
-  const produtoPreco = $('checkout-produto-preco');
-  const produtoDescricao = $('checkout-produto-descricao');
 
   // SELECIONA CAMPOS DO FORMULÁRIO DE FRETE
   const cepInput = $('cep');
@@ -46,41 +42,50 @@ document.addEventListener('DOMContentLoaded', function () {
   let produtoCarregado = false;
   btnBuscar.disabled = true;
 
-  // 1. FUNÇÃO PARA CARREGAR PRODUTO
-  function carregarProduto(callback) {
-    if (!idProduto) {
+  // 1. FUNÇÃO PARA CARREGAR PRODUTOS
+  function carregarProdutos(callback) {
+    if (!listaIds.length) {
       produtoCarregado = true;
       btnBuscar.disabled = false;
       if (callback) callback();
       return;
     }
-
-    // Carrega o produto do arquivo JSON
+    // Carrega os produtos do arquivo JSON
     fetch('./AssetsJS/dados.json')
       .then(res => res.json())
       .then(dados => {
-        const produto = dados.find(item => item.id == idProduto);
-        if (produto) {
-          produtoSelecionado = produto;
-          valorProduto = Number(produto.preco);
+        // Filtra os produtos pelos ids
+        const produtos = dados.filter(item => listaIds.includes(String(item.id)));
+        if (produtos.length) {
+          produtoSelecionado = produtos;
+          // Soma o valor total dos produtos
+          valorProduto = produtos.reduce((soma, p) => soma + Number(p.preco), 0);
           produtoCarregado = true;
-
-          // Preenche os dados do produto na tela
+          // Limpa o container
+          produtoSection.innerHTML = '';
+          // Para cada produto, cria um bloco de exibição
+          produtos.forEach(produto => {
+            const bloco = document.createElement('div');
+            bloco.className = 'produto-checkout-item';
+            bloco.innerHTML = `
+              <img src="${produto.foto}" style="max-width:120px;max-height:120px;" />
+              <div><strong>${produto.nome}</strong></div>
+              <div>Categoria: ${produto.categoria}</div>
+              <div>Marca: ${produto.marca}</div>
+              <div>Preço: R$ ${Number(produto.preco).toFixed(2)}</div>
+              <div>${produto.descricao}</div>
+              <hr>
+            `;
+            produtoSection.appendChild(bloco);
+          });
           produtoSection.style.display = 'block';
-          produtoFoto.src = produto.foto;
-          produtoNome.textContent = produto.nome;
-          produtoCategoria.textContent = produto.categoria;
-          produtoMarca.textContent = produto.marca;
-          produtoPreco.textContent = produto.preco.toFixed(2);
-          produtoDescricao.textContent = produto.descricao;
-
           btnBuscar.disabled = false;
           if (callback) callback();
         }
       });
   }
-  // CHAMA A FUNÇÃO PARA CARREGAR O PRODUTO AO INICIAR
-  carregarProduto();
+  // CHAMA A FUNÇÃO PARA CARREGAR OS PRODUTOS AO INICIAR
+  carregarProdutos();
   // Exibe mensagem de sucesso ou erro
   function setMsg(text, isError) {
     msg.textContent = text;

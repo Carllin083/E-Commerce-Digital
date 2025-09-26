@@ -9,6 +9,7 @@
   <script src="./AssetsJS/cart.js" defer></script>
 </head>
 <body>
+<!-- VERSÃO COMENTADA: Produto (Detalhe) -->
   <header class="site-header">
     <a href="index.html" class="logo">EletroHUB</a>
     <a href="carrinho.html" class="cart-link" aria-label="Ver carrinho">
@@ -19,6 +20,7 @@
   </header>
 
   <main class="produto-main">
+<!-- Estrutura principal da página; comentários apenas explicativos -->
     <div class="produto-container">
       <img id="produto-foto" src="" alt="Foto do Produto" class="produto-foto" />
       <div class="produto-info">
@@ -37,13 +39,14 @@
     </div>
   
     <section class="produto-actions container">
-<<<<<<< HEAD
-      <button id="btn-add-carrinho" class="btn-primary">Adicionar ao carrinho</button>
-=======
       <button id="btn-add-carrinho" class="btn-primary btn-add">Adicionar ao carrinho</button>
->>>>>>> c715359ce0af3551527f3856b0c3154107e06296
     </section>
-  </main>
+  
+  <section class="container" id="mini-galeria" aria-label="Mini-galeria de imagens do produto" style="margin-top:12px;">
+    <div id="lista-miniaturas" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
+  </section>
+</main>
+
 
 
   <script src="./AssetsJS/products.js" defer></script>

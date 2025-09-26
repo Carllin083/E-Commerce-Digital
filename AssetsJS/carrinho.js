@@ -1,82 +1,72 @@
-document.addEventListener('DOMContentLoaded', function(){
-  var listEl = document.getElementById('cart-list');
-  var totalEl = document.getElementById('cart-total');
 
-  function formatBR(n){
-    return n.toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
+document.addEventListener('DOMContentLoaded', function(){
+  const listaEl = document.getElementById('cart-list');
+  const totalEl = document.getElementById('cart-total');
+
+  function moedaBR(n){ return n.toLocaleString('pt-BR', {style:'currency', currency:'BRL'}); }
+
+  async function carregarProdutos(){
+    const r = await fetch('./AssetsJS/dados.json');
+    if(!r.ok) throw new Error('Falha ao carregar dados');
+    return await r.json();
   }
 
-  function render(){
-    var items = Cart.read();
-    if(!items.length){
-      listEl.innerHTML = '<p>Seu carrinho está vazio.</p>';
-      totalEl.textContent = formatBR(0);
+  async function desenhar(){
+    const itens = Cart.read();
+    if(!itens.length){
+      if (listaEl) listaEl.innerHTML = '<p>Seu carrinho está vazio.</p>';
+      if (totalEl) totalEl.textContent = moedaBR(0);
       return;
     }
-    fetch('./AssetsJS/dados.json')
-      .then(function(r){ return r.json(); })
-      .then(function(all){
-        var sum = 0;
-        listEl.innerHTML = items.map(function(it){
-          var prod = all.find(function(p){ return String(p.id)===String(it.id); });
-          if(!prod) return '';
-          var subtotal = prod.preco * it.qty;
-          sum += subtotal;
-          return (
-            '<div class="cart-item">' +
-              '<img src="'+prod.foto+'" alt="Foto de '+prod.nome+'">' +
-              '<div class="cart-info">' +
-                '<h3>'+prod.nome+'</h3>' +
-                '<p class="muted">'+prod.marca+' • '+prod.categoria+'</p>' +
-                '<div class="cart-row">' +
-                  '<div class="qty">' +
-                    '<button class="btn-qty" data-id="'+prod.id+'" data-op="-">-</button>' +
-                    '<input class="qty-input" data-id="'+prod.id+'" type="number" min="1" value="'+it.qty+'"/>' +
-                    '<button class="btn-qty" data-id="'+prod.id+'" data-op="+">+</button>' +
-                  '</div>' +
-                  '<div class="prices">' +
-                    '<span class="unit">'+formatBR(prod.preco)+'</span>' +
-                    '<strong class="subtotal">'+formatBR(subtotal)+'</strong>' +
-                  '</div>' +
-                '</div>' +
-              '</div>' +
-              '<button class="btn-remove" data-id="'+prod.id+'">Remover</button>' +
-            '</div>'
-          );
-        }).join('');
-        totalEl.textContent = formatBR(sum);
-      });
+    const dados = await carregarProdutos();
+    const mapa = new Map(dados.map(p => [String(p.id), p]));
+    let total = 0;
+    const html = itens.map(it => {
+      const p = mapa.get(String(it.id));
+      const preco = p ? Number(p.preco) : 0;
+      const qtd = Number(it.qty || 1);
+      const sub = preco * qtd;
+      total += sub;
+      const foto = p?.foto || '';
+      const nome = p?.nome || 'Produto';
+      return `
+        <div class="cart-item">
+          <img src="${foto}" alt="${nome}">
+          <div>
+            <h4>${nome}</h4>
+            <div class="qty-control">
+              <label>Qtd:</label>
+              <input class="qty-input" type="number" min="1" value="${qtd}" data-id="${it.id}">
+              <button class="remove-btn" data-id="${it.id}">Remover</button>
+            </div>
+          </div>
+          <div class="price">${moedaBR(sub)}</div>
+        </div>
+      `;
+    }).join('');
+    if (listaEl) listaEl.innerHTML = html;
+    if (totalEl) totalEl.textContent = moedaBR(total);
   }
 
-  listEl.addEventListener('click', function(e){
-    var t = e.target;
-    if(t.classList.contains('btn-qty')){
-      var id = t.getAttribute('data-id');
-      var op = t.getAttribute('data-op');
-      var items = Cart.read();
-      var it = items.find(function(x){ return String(x.id)===String(id); });
-      if(!it) return;
-      if(op==='+') it.qty += 1; else it.qty = Math.max(1, it.qty-1);
-      localStorage.setItem('ecommerce_cart_v1', JSON.stringify(items));
-      Cart.updateBadge();
-      render();
-    }else if(t.classList.contains('btn-remove')){
-      var idr = t.getAttribute('data-id');
-      Cart.remove(idr);
-      render();
-    }
-  });
+  if (listaEl) {
+    listaEl.addEventListener('click', (e)=>{
+      const b = e.target;
+      if (b.classList.contains('remove-btn')){
+        Cart.remove(b.getAttribute('data-id'));
+        desenhar();
+      }
+    });
+    listaEl.addEventListener('change', (e)=>{
+      const i = e.target;
+      if (i.classList.contains('qty-input')){
+        const id = i.getAttribute('data-id');
+        let v = parseInt(i.value, 10);
+        if (isNaN(v) || v < 1) v = 1;
+        Cart.setQty(id, v);
+        desenhar();
+      }
+    });
+  }
 
-  listEl.addEventListener('change', function(e){
-    var t = e.target;
-    if(t.classList.contains('qty-input')){
-      var id = t.getAttribute('data-id');
-      var v = parseInt(t.value,10);
-      if(isNaN(v) || v<1) v=1;
-      Cart.setQty(id, v);
-      render();
-    }
-  });
-
-  render();
+  desenhar();
 });

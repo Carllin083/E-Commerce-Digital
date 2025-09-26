@@ -1,96 +1,75 @@
+
+// cart.js (limpo em português): gerencia o carrinho no localStorage
 (function(){
-  var STORAGE_KEY = 'ecommerce_cart_v1';
+  const CHAVE = 'ecommerce_carrinho_v1';
 
-  function readCart(){
+  function lerCarrinho(){
     try{
-      var raw = localStorage.getItem(STORAGE_KEY);
-      if(!raw) return [];
-      var arr = JSON.parse(raw);
-      if(!Array.isArray(arr)) return [];
-      return arr;
-    }catch(e){
-      console.log('cart_read_error', e && e.message ? e.message : e);
-      return [];
+      const bruto = localStorage.getItem(CHAVE);
+      const lista = bruto ? JSON.parse(bruto) : [];
+      return Array.isArray(lista) ? lista : [];
+    }catch(e){ console.log('erro_ler_carrinho', e?.message || e); return []; }
+  }
+
+  function salvarCarrinho(itens){
+    try{ localStorage.setItem(CHAVE, JSON.stringify(itens || [])); }
+    catch(e){ console.log('erro_salvar_carrinho', e?.message || e); }
+  }
+
+  function contarItens(){
+    return lerCarrinho().reduce((s, it) => s + Number(it.qty || it.quantidade || 1), 0);
+  }
+
+  function atualizarBadge(){
+    const n = contarItens();
+    const badge = document.getElementById('cart-count');
+    if(badge){
+      badge.textContent = n;
+      badge.style.display = n > 0 ? 'inline-flex' : 'none';
     }
   }
 
-  function writeCart(items){
-    try{
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-    }catch(e){
-      console.log('cart_write_error', e && e.message ? e.message : e);
+  function adicionar(id, quantidade){
+    const itens = lerCarrinho();
+    const idx = itens.findIndex(x => String(x.id) === String(id));
+    const q = Number(quantidade || 1);
+    if(idx >= 0){ itens[idx].qty = Number(itens[idx].qty || 1) + q; }
+    else { itens.push({ id: String(id), qty: q }); }
+    salvarCarrinho(itens);
+    atualizarBadge();
+  }
+
+  function definirQuantidade(id, quantidade){
+    const itens = lerCarrinho();
+    const idx = itens.findIndex(x => String(x.id) === String(id));
+    if(idx >= 0){
+      const q = Math.max(1, Number(quantidade || 1));
+      itens[idx].qty = q;
+      salvarCarrinho(itens);
+      atualizarBadge();
     }
   }
 
-  function findIndex(items, id){
-    for(var i=0;i<items.length;i++){ if(String(items[i].id)===String(id)) return i; }
-    return -1;
+  function remover(id){
+    const itens = lerCarrinho().filter(x => String(x.id) !== String(id));
+    salvarCarrinho(itens);
+    atualizarBadge();
   }
 
-  function addToCart(id, qty){
-    var q = parseInt(qty,10); if(isNaN(q) || q<=0) q = 1;
-    var items = readCart();
-    var idx = findIndex(items, id);
-    if(idx>=0){
-      items[idx].qty += q;
-    }else{
-      items.push({id:String(id), qty:q});
-    }
-    writeCart(items);
-    updateCartBadge();
-    console.log('cart_add', {id:String(id), qty:q});
-  }
-
-  function setQty(id, qty){
-    var q = parseInt(qty,10);
-    if(isNaN(q) || q<1) q = 1;
-    var items = readCart();
-    var idx = findIndex(items, id);
-    if(idx>=0){
-      items[idx].qty = q;
-      writeCart(items);
-      updateCartBadge();
-      console.log('cart_set', {id:String(id), qty:q});
-    }
-  }
-
-  function removeFromCart(id){
-    var items = readCart().filter(function(it){ return String(it.id)!==String(id); });
-    writeCart(items);
-    updateCartBadge();
-    console.log('cart_remove', {id:String(id)});
-  }
-
-  function clearCart(){
-    writeCart([]);
-    updateCartBadge();
-    console.log('cart_clear');
-  }
-
-  function getCount(){
-    var items = readCart();
-    var total = 0;
-    for(var i=0;i<items.length;i++){ total += items[i].qty; }
-    return total;
-  }
-
-  function updateCartBadge(){
-    var badge = document.getElementById('cart-count');
-    if(!badge) return;
-    var n = getCount();
-    badge.textContent = n>99 ? '99+' : String(n);
-    badge.style.display = n>0 ? 'inline-flex' : 'none';
+  function limpar(){
+    salvarCarrinho([]);
+    atualizarBadge();
   }
 
   window.Cart = {
-    read: readCart,
-    add: addToCart,
-    setQty: setQty,
-    remove: removeFromCart,
-    clear: clearCart,
-    count: getCount,
-    updateBadge: updateCartBadge
+    read: lerCarrinho,
+    add: adicionar,
+    setQty: definirQuantidade,
+    remove: remover,
+    clear: limpar,
+    count: contarItens,
+    updateBadge: atualizarBadge
   };
 
-  document.addEventListener('DOMContentLoaded', updateCartBadge);
+  document.addEventListener('DOMContentLoaded', atualizarBadge);
 })();

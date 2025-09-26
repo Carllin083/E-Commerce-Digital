@@ -115,3 +115,15 @@
 .btn-finalizar:hover {
   background: linear-gradient(90deg, var(--accent-light), var(--accent-dark));
 }
+
+
+/* Resumo da compra (limpo) */
+.resumo-compra { margin: 12px 0 16px; }
+.resumo-compra .linha-total {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  align-items: baseline;
+  font-size: 1rem;
+}
+.resumo-compra .linha-total strong { font-weight: 700; }

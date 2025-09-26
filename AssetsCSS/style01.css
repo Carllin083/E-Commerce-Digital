@@ -286,8 +286,6 @@ body {
 .cart-link{ display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#111827; font-weight:600; }
 .cart-link i{ width:20px; height:20px; }
 .cart-label{ font-size:.95rem; }
-<<<<<<< HEAD
-=======
 
 
 /* === UX Improvements (2025-09-24) === */
@@ -362,4 +360,3 @@ body {
 
 /* Utilities */
 .hidden{ display:none !important; }
->>>>>>> c715359ce0af3551527f3856b0c3154107e06296
